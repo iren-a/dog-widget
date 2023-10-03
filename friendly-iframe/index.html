@@ -5,10 +5,17 @@
 <div id="widget-2"></div>
 
 <script>
-  const widget1 = DogWidget.init({
-    container: document.getElementById('widget-1'),
+  const iframe = document.createElement('iframe');
+  document.head.appendChild(iframe);
+
+  const script = document.createElement('script');
+  script.src = 'dog-widget.js';
+  const loaded = new Promise((resolve) => {
+    script.onload = resolve;
   });
-  const widget2 = DogWidget.init({
-    container: document.getElementById('widget-2'),
-  });
+
+  loaded.then(() => {
+    iframe.contentWindow.init({ container: document.getElementById('widget-1') });
+  })
+  iframe.contentDocument.head.appendChild(script);
 </script>

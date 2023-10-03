@@ -46,8 +46,9 @@
   }
 
 
-  window.init = (config) => {
-    const widget = new Widget(config);
-    window.widget = widget;
-  };
+  window.DogWidget = {
+    init(config) {
+      return new Widget(config);
+    }
+  }
 })();
